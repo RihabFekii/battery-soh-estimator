@@ -1,0 +1,42 @@
+{
+    "id": "urn:ngsi-ld:BatteryController:battery001",
+    "type": "BatteryController",
+    "createdAt": "2024-09-13T12:51:28.155Z",
+    "modifiedAt": "2024-09-13T12:51:28.155Z",
+    "chargingBehaviour": {
+        "type": "Property",
+        "createdAt": "2024-09-13T12:51:28.155Z",
+        "modifiedAt": "2024-09-13T12:51:28.155Z",
+        "value": 10
+    },
+    "dischargingBehaviour": {
+        "type": "Property",
+        "createdAt": "2024-09-13T12:51:28.155Z",
+        "modifiedAt": "2024-09-13T12:51:28.155Z",
+        "value": 10
+    },
+    "temperature": {
+        "type": "Property",
+        "createdAt": "2024-09-13T12:51:28.155Z",
+        "modifiedAt": "2024-09-13T12:51:28.155Z",
+        "value": 25
+    },
+    "sohPercentage": {
+        "type": "Property",
+        "createdAt": "2024-09-13T12:51:28.155Z",
+        "modifiedAt": "2024-09-13T12:51:28.155Z",
+        "value": 100
+    },
+    "sohCurrentState": {
+        "type": "Property",
+        "createdAt": "2024-09-13T12:51:28.155Z",
+        "modifiedAt": "2024-09-13T12:51:28.155Z",
+        "value": "Very Good"
+    },
+    "sohTimeToCritical": {
+        "type": "Property",
+        "createdAt": "2024-09-13T12:51:28.155Z",
+        "modifiedAt": "2024-09-13T12:51:28.155Z",
+        "value": 100
+    }
+}

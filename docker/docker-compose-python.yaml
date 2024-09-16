@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  battery_controller:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ..:/app
+    env_file:
+      - ../.env
+    command: python soh_estimator.py
+    networks:
+      - default

@@ -39,3 +39,17 @@ services:
       - default
     ports:
       - "27017:27017"
+
+  battery_controller:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ..:/app
+    env_file:
+      - ../.env
+    depends_on:
+      - orion
+    command: python soh_estimator.py
+    networks:
+      - default

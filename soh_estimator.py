@@ -1,12 +1,14 @@
 import requests
 import time
 import json
+import os
 
-# Constants
-ENTITY_ID = "urn:ngsi-ld:BatteryController:battery001"
-BROKER_URL = "http://localhost:1026/ngsi-ld/v1/entities/"
-DEFAULT_DEGRADATION_RATE = 0.5  # Default degradation rate (% per second)
-RUN_DURATION = 120  # Total run duration in seconds (2 minutes time for the demo)
+# Environments Variables
+ENTITY_ID = os.getenv("ENTITY_ID")
+BROKER_URL = os.getenv("BROKER_URL")
+DEFAULT_DEGRADATION_RATE = float(os.getenv("DEFAULT_DEGRADATION_RATE", 0.5))
+RUN_DURATION = int(os.getenv("RUN_DURATION", 120))
+
 
 def get_entity_data(entity_id):
     """Fetch the entity data from the Context Broker."""

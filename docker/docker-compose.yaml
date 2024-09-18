@@ -15,8 +15,7 @@
 # for FIWARE Components in order to scale up to a proper architecture:
 # 
 # see: https://github.com/FIWARE/helm-charts/
-#
-version: '3.8'
+
 
 services:
   orion:
@@ -28,17 +27,17 @@ services:
     depends_on:
       - mongo-db
     ports:
-      - "1026:1026"
+      - "1021:1026"
     command: -dbhost mongo-db
 
   mongo-db:
     image: mongo:4.4
     hostname: mongo-db
     container_name: db-mongo
+    volumes:
+      - ./mongodata:/data/db
     networks:
       - default
-    ports:
-      - "27017:27017"
 
   battery_controller:
     build:

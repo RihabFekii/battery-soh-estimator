@@ -4,6 +4,9 @@ import json
 import os
 
 # Environments Variables
+from dotenv import load_dotenv
+load_dotenv()
+
 ENTITY_ID = os.getenv("ENTITY_ID")
 BROKER_URL = os.getenv("BROKER_URL")
 DEFAULT_DEGRADATION_RATE = float(os.getenv("DEFAULT_DEGRADATION_RATE", 0.5))
@@ -12,11 +15,15 @@ RUN_DURATION = int(os.getenv("RUN_DURATION", 120))
 
 def get_entity_data(entity_id):
     """Fetch the entity data from the Context Broker."""
-    response = requests.get(f"{BROKER_URL}{entity_id}", headers={"Content-Type": "application/json"})
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print(f"Error fetching entity data: {response.status_code} {response.text}")
+    try:
+        response = requests.get(f"{BROKER_URL}{entity_id}", headers={"Content-Type": "application/json"})
+        if response.status_code == 200:
+            return response.json()
+        else:
+            print(f"Error fetching entity data: {response.status_code} {response.text}")
+            return None
+    except Exception as e:
+        print(e)
         return None
 
 def calculate_degradation_factor(charging_behavior, discharging_behavior, temperature):
@@ -72,8 +79,11 @@ def main():
     while time.time() - start_time < RUN_DURATION:
         # Step 1: Query the Context Broker
         entity_data = get_entity_data(ENTITY_ID)
+
         if entity_data is None:
-            break
+            #break
+            time.sleep(10)
+            continue
 
         # Step 2: Extract relevant attributes
         charging_behavior = entity_data.get("chargingBehaviour", {}).get("value", 10)
@@ -107,4 +117,6 @@ def main():
         time.sleep(1)
 
 if __name__ == "__main__":
+
+    print(os.getenv("ENTITY_ID"))
     main()

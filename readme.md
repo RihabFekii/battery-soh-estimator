@@ -56,26 +56,26 @@ When running the orion and mongodb containers, we need to create an entity in th
 To do that run the following command in your termninal: 
 
 ```shell
-curl -iX POST 'http://localhost:1026/ngsi-ld/v1/entities/' \
+curl -iX POST 'http://localhost:1021/ngsi-ld/v1/entities/' \
 -H 'Content-Type: application/json' \
 --data-raw '{
       "id": "urn:ngsi-ld:BatteryController:battery001",
       "type": "BatteryController",
       "chargingBehaviour": {
             "type": "Property",
-            "value": 10
+            "value": 9
       },
       "dischargingBehaviour": {
             "type": "Property",
-            "value": 10
+            "value": 9
       },
       "temperature": {
             "type": "Property",
-            "value": 25
+            "value": 50
       },
       "sohPercentage": {
             "type": "Property",
-            "value": 100
+            "value": 90
       },
       "sohCurrentState": {
             "type": "Property",
@@ -83,14 +83,14 @@ curl -iX POST 'http://localhost:1026/ngsi-ld/v1/entities/' \
       },
       "sohTimeToCritical": {
             "type": "Property",
-            "value": 120
+            "value": 110
       }
 }'
 ```
 ### Check the entity created
 Run this command in the terminal to GET the entities
 ```shell
-curl -iX GET 'http://localhost:1026/ngsi-ld/v1/entities/urn:ngsi-ld:BatteryController:battery001' \
+curl -iX GET 'http://localhost:1021/ngsi-ld/v1/entities/urn:ngsi-ld:BatteryController:battery002' \
 -H 'Content-Type: application/json'
 ```
 
@@ -98,19 +98,19 @@ You should have a response such as:
 
 ```json
 {
-  "id": "urn:ngsi-ld:BatteryController:battery001",
+  "id": "urn:ngsi-ld:BatteryController:battery002",
   "type": "BatteryController",
   "chargingBehaviour": {
     "type": "Property",
-    "value": 10
+    "value": 9
   },
   "dischargingBehaviour": {
     "type": "Property",
-    "value": 10
+    "value": 18
   },
   "temperature": {
     "type": "Property",
-    "value": 25
+    "value": 50
   },
   "sohPercentage": {
     "type": "Property",
@@ -145,3 +145,6 @@ Check the Log and if everything works well you should have the followint output:
 2024-09-16 16:25:11 Entity updated successfully.
 ````
 
+## restart the battery controller
+
+docker compose -f docker/docker-compose.yaml restart battery_controller
